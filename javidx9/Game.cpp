@@ -24,7 +24,6 @@ namespace jh {
 		gfxTiles.Load("./assets/blocks.png");
 
 		vLevel.clear();
-		//vGoals.clear();
 
 		for (int y = 0; y < vLevelSize.y; y++) {
 			for (int x = 0; x < vLevelSize.x; x++) {
@@ -42,19 +41,6 @@ namespace jh {
 				case '+':
 					vLevel.emplace_back(std::make_unique<block_simple>());
 					break;
-				//case '-':
-				//	vLevel.emplace_back(std::make_unique<block_horizontal>());
-				//	break;
-				//case '|':
-				//	vLevel.emplace_back(std::make_unique<block_vertical>());
-				//	break;
-				//case '5':
-				//	vLevel.emplace_back(std::make_unique<block_countdown>(5));
-				//	break;
-				//case '@':
-				//	vGoals.push_back({ x,y });
-				//	vLevel.emplace_back(nullptr);
-				//	break;
 				default:
 					vLevel.emplace_back(nullptr);
 					break;
@@ -65,6 +51,15 @@ namespace jh {
 	}
 	void Game::Update()
 	{
+
+		// Input 에 GetMoveDirectino 을 박으면 생기는 일
+		// 1. 일단 매게변수로 pge 를 받음 이건 OK
+		// 2. bPusing , dirPush 이걸 어떻게 하는 게 문제다
+		// 3. 문제가 되는 이유 Input 하고 Game 에 중복된 두개의 변수가있음
+		// 4. 이걸 어떻게 Input -> Game 까지 연결할까 이게 문제다
+		// 5. 포인터 매게변수로 넣는건 좀 더럽고 
+		// 6. 아니면 구조체로 묶어서 반환하는 것도 좀 그렇고
+
 		bPushing = false;
 		dirPush = Direction::NONE;
 
@@ -179,20 +174,11 @@ namespace jh {
 
 		}
 
-		/*int nGoals = 0;
-		for (auto& g : vGoals) {
-			if (vLevel[id(g)]) {
-				nGoals++;
-			}
-		}*/
-
 	}
 	void Game::Render()
 	{
-
-		/*for (auto& g : vGoals) {
-			FillCircle(g * vBlockSize + vBlockSize / 2, vBlockSize.x / 2 - 2, olc::YELLOW);
-		}*/
+		// 화면 초기화
+		pge->Clear(olc::BLACK);
 
 		olc::vi2d vTilePos = { 0,0 };
 
@@ -207,7 +193,5 @@ namespace jh {
 				}
 			}
 		}
-
-		//DrawString(4, 4, "Goals: " + std::to_string(nGoals) + " / " + std::to_string(vGoals.size()), olc::WHITE);
 	}
 }

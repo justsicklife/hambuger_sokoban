@@ -49,7 +49,7 @@ namespace jh {
 
 		int id(const olc::vi2d& pos) const
 		{
-			return pos.y * static_cast<int>(vLevelSize.x) + pos.x;
+			return pos.y * vLevelSize.x + pos.x;
 		}
 	};
 }

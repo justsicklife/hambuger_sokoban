@@ -40,8 +40,6 @@ public:
 
 		mGame->LateUpdate();
 
-		Clear(olc::BLACK);
-
 		mGame->Render();
 
 		return true;
