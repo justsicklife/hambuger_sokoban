@@ -17,30 +17,17 @@ public :
 
 public:
 
-	void LoadLevel(int n) {
-
-	}
-
 	bool OnUserCreate() override {
 		mGame = new jh::Game(this);
 
 		mGame->Initialize();
 
-		LoadLevel(0);
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override {
 
-		mGame->Update();
-
-		if (GetKey(olc::Key::R).bPressed) {
-			LoadLevel(0);
-		}
-
-		mGame->LateUpdate();
-
-		mGame->Render();
+		mGame->Run();
 
 		return true;
 	}

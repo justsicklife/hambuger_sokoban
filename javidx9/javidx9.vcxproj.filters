@@ -10,6 +10,12 @@
     <Filter Include="Input">
       <UniqueIdentifier>{68736b5d-913c-4d2d-8cd6-e01718f706aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Map">
+      <UniqueIdentifier>{ee249718-2845-4d9a-8471-f481b1158db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{ad965f1c-483a-4106-a0fb-8ad6dc616b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OneLoneCoder_PGE_SlidingBlockPuzzle.cpp" />
@@ -18,6 +24,12 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +43,12 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
