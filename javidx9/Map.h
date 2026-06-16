@@ -1,6 +1,7 @@
 #pragma once
 #include "olcPixelGameEngine.h"
 #include "Block.h"
+#include "Input.h"
 
 namespace jh {
 	class Map
@@ -38,7 +39,7 @@ namespace jh {
 		}
 
 		void Initialize();
-		void LateUpdate(Direction dirPush);
+		void LateUpdate(InputState inputState);
 	private:
 	
 	};

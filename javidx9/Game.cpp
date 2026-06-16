@@ -39,13 +39,13 @@ namespace jh {
 		// 4. 이걸 어떻게 Input -> Game 까지 연결할까 이게 문제다
 		// 5. 포인터 매게변수로 넣는건 좀 더럽고 
 		// 6. 아니면 구조체로 묶어서 반환하는 것도 좀 그렇고
-		dirPush = input->GetMoveDirection(pge);
+		inputState = input->Update(pge);
 		
 	}
 	void Game::LateUpdate()
 	{
 
-		map->LateUpdate(dirPush);
+		map->LateUpdate(inputState);
 
 	}
 	void Game::Render()

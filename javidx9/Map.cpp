@@ -35,9 +35,9 @@ namespace jh {
 		}
 	}
 	
-	void Map::LateUpdate(Direction dirPush)
+	void Map::LateUpdate(InputState inputState)
 	{
-		if (dirPush != Direction::NONE) {
+		if (inputState.direction != Direction::NONE) {
 			// 현재 플레이어 위치
 			olc::vi2d vBlock = vPlayer;
 
@@ -49,9 +49,9 @@ namespace jh {
 			while (bTest) {
 				// 현재 위치에 블록이 있다면
 				if (vLevel[id(vBlock)] != nullptr) {
-					if (vLevel[id(vBlock)]->Push((Direction)(((int)dirPush + 2) % 4))) {
+					if (vLevel[id(vBlock)]->Push((Direction)(((int)inputState.direction + 2) % 4))) {
 						// Block allows push
-						switch (dirPush) {
+						switch (inputState.direction) {
 						case Direction::NORTH:
 							vBlock.y--;
 							break;
@@ -86,7 +86,7 @@ namespace jh {
 				{
 					olc::vi2d vSource = vBlock;
 
-					switch (dirPush) {
+					switch (inputState.direction) {
 					case Direction::NORTH:
 						vSource.y++;
 						break;
@@ -108,7 +108,7 @@ namespace jh {
 					vBlock = vSource;
 				}
 
-				switch (dirPush) {
+				switch (inputState.direction) {
 				case Direction::NORTH:
 					vPlayer.y--;
 					break;

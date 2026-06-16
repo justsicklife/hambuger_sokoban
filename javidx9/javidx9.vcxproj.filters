@@ -16,6 +16,9 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{ad965f1c-483a-4106-a0fb-8ad6dc616b02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Player">
+      <UniqueIdentifier>{cb612fce-fd86-4f2c-84f5-b5e204d55283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OneLoneCoder_PGE_SlidingBlockPuzzle.cpp" />
@@ -30,6 +33,9 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

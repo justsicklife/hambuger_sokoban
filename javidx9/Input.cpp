@@ -1,28 +1,54 @@
 #include "Input.h"
 
 namespace jh {
+	
+	InputState Input::Update(olc::PixelGameEngine* pge)
+	{
+
+		InputState inputState = {};
+
+		Direction dir = GetMoveDirection(pge);
+		
+		bool isShiftHeld = GetShiftHeld(pge);
+
+		inputState.direction = dir;
+		inputState.directionMode = isShiftHeld;
+
+		return inputState;
+	}
 
 	Direction Input::GetMoveDirection(olc::PixelGameEngine* pge)
 	{
 
-		Direction dirPush = Direction::NONE;
+		Direction dir = Direction::NONE;
 
 		if (pge->GetKey(olc::Key::W).bPressed) {
-			dirPush = Direction::NORTH;
+			dir = Direction::NORTH;
 		}
 
 		if (pge->GetKey(olc::Key::S).bPressed) {
-			dirPush = Direction::SOUTH;
+			dir = Direction::SOUTH;
 		}
 
 		if (pge->GetKey(olc::Key::A).bPressed) {
-			dirPush = Direction::WEST;
+			dir = Direction::WEST;
 		}
 
 		if (pge->GetKey(olc::Key::D).bPressed) {
-			dirPush = Direction::EAST;
+			dir = Direction::EAST;
 		}
 
-		return dirPush;
+		return dir;
+	}
+
+	bool Input::GetShiftHeld(olc::PixelGameEngine* pge)
+	{
+		bool isShiftHeld = false;
+
+		if (pge->GetKey(olc::Key::SHIFT).bHeld) {
+			isShiftHeld = true;
+		}
+
+		return isShiftHeld;
 	}
 }
