@@ -47,9 +47,11 @@ namespace jh {
 
 	struct block_player : public block
 	{
+
 		void DrawSelf(olc::PixelGameEngine* pge, const olc::vi2d& pos, const olc::vi2d& size, const olc::Renderable& skin) override
 		{
 			pge->FillRect(pos * size, size, olc::WHITE);
+			pge->DrawString(pos* size, "Left", olc::RED,1);
 		}
 
 		bool Push(Direction from) override

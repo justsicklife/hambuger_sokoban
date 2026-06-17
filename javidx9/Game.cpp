@@ -45,12 +45,13 @@ namespace jh {
 	}
 	void Game::LateUpdate()
 	{
-
 		olc::vi2d playerPos = map->LateUpdate(inputState);
 
-		PlayerInfo playerInfo = {};
+		PlayerInfo playerInfo = this->player->playerInfo;
 
-		playerInfo.facing = inputState.direction;
+		if (inputState.direction != Direction::NONE) {
+			playerInfo.facing = inputState.direction;
+		}
 
 		playerInfo.pos = playerPos;
 

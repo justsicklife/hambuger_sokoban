@@ -32,8 +32,32 @@ namespace jh {
 
 		auto& b = map->vLevel[map->id(player->playerInfo.pos)];
 
+		olc::vi2d pos = player->playerInfo.pos;
+
+		olc::vi2d size = map->vBlockSize;
+
 		if (b != nullptr) {
-			b->DrawSelf(pge, player->playerInfo.pos, map->vBlockSize, gfxTiles);
+			pge->FillRect(pos * size, size, olc::WHITE);
+
+			switch (player->playerInfo.facing)
+			{
+			case Direction::NORTH:
+				pge->DrawString(pos * size, "NORTH", olc::RED, 1);
+				break;
+			case Direction::EAST:
+				pge->DrawString(pos * size, "EAST", olc::RED, 1);
+				break;
+			case Direction::SOUTH:
+				pge->DrawString(pos * size, "SOUTH", olc::RED, 1);
+				break;
+			case Direction::WEST:
+				pge->DrawString(pos * size, "WEST", olc::RED, 1);
+				break;
+			default :
+				pge->DrawString(pos * size, "NONE", olc::RED, 1);
+				break;
+			}
+
 		}
 
 	}
