@@ -6,8 +6,9 @@ namespace jh {
 		gfxTiles.Load("./assets/blocks.png");
 	}
 
-	void Renderer::Render(olc::PixelGameEngine* pge, Map* map)
+	void Renderer::RenderMap(olc::PixelGameEngine* pge, Map* map)
 	{
+
 		// 화면 초기화
 		pge->Clear(olc::BLACK);
 
@@ -19,10 +20,21 @@ namespace jh {
 			{
 				auto& b = map->vLevel[map->id(vTilePos)];
 
-				if (b) {
+				if (b != nullptr && !b->IsPlayer()) {
 					b->DrawSelf(pge, vTilePos, map->vBlockSize, gfxTiles);
 				}
 			}
 		}
+	}
+
+	void Renderer::RenderPlayer(olc::PixelGameEngine* pge, Player* player,Map* map)
+	{
+
+		auto& b = map->vLevel[map->id(player->playerInfo.pos)];
+
+		if (b != nullptr) {
+			b->DrawSelf(pge, player->playerInfo.pos, map->vBlockSize, gfxTiles);
+		}
+
 	}
 }

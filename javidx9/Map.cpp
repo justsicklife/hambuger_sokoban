@@ -35,7 +35,7 @@ namespace jh {
 		}
 	}
 	
-	void Map::LateUpdate(InputState inputState)
+	olc::vi2d Map::LateUpdate(InputState inputState)
 	{
 		if (inputState.direction != Direction::NONE) {
 			// 현재 플레이어 위치
@@ -125,6 +125,7 @@ namespace jh {
 			}
 
 		}
+		return vPlayer;
 	}
 
 }

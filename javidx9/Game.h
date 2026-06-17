@@ -5,7 +5,7 @@
 #include "Map.h"
 #include "Input.h"
 #include "Renderer.h"
-
+#include "Player.h"
 
 namespace jh {
 
@@ -29,5 +29,6 @@ namespace jh {
 		Input* input;
 		Map* map;
 		Renderer* renderer;
+		Player* player;
 	};
 }

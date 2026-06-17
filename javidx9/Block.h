@@ -23,6 +23,10 @@ namespace jh {
 
 		}
 
+		virtual bool IsPlayer() {
+			return false;
+		}
+
 	};
 
 	struct block_solid : public block
@@ -50,6 +54,10 @@ namespace jh {
 
 		bool Push(Direction from) override
 		{
+			return true;
+		}
+
+		bool IsPlayer() {
 			return true;
 		}
 	};

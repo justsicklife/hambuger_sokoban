@@ -9,6 +9,7 @@ namespace jh {
 		this->input = new Input();
 		this->map = new Map();
 		this->renderer = new Renderer();
+		this->player = new Player();
 	}
 
 	Game::~Game()
@@ -45,11 +46,19 @@ namespace jh {
 	void Game::LateUpdate()
 	{
 
-		map->LateUpdate(inputState);
+		olc::vi2d playerPos = map->LateUpdate(inputState);
 
+		PlayerInfo playerInfo = {};
+
+		playerInfo.facing = inputState.direction;
+
+		playerInfo.pos = playerPos;
+
+		player->LateUpdate(playerInfo);
 	}
 	void Game::Render()
 	{
-		renderer->Render(pge,map);
+		renderer->RenderMap(pge,map);
+		renderer->RenderPlayer(pge, player, map);
 	}
 }

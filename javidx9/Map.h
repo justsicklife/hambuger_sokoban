@@ -39,7 +39,12 @@ namespace jh {
 		}
 
 		void Initialize();
-		void LateUpdate(InputState inputState);
+		/// <summary>
+		/// 업데이트에서 입력을 받고 
+		/// 입력에 맞는 행동을 하는 메서드
+		/// </summary>
+		/// <param name="inputState"></param>
+		olc::vi2d LateUpdate(InputState inputState);
 	private:
 	
 	};
