@@ -11,8 +11,13 @@ namespace jh {
 		
 		bool isShiftHeld = GetShiftHeld(pge);
 
+		bool isSpaceBarPressed = GetSpaceBarPressed(pge);
+
 		inputState.direction = dir;
 		inputState.directionMode = isShiftHeld;
+		inputState.eat = isSpaceBarPressed;
+		if (dir != Direction::NONE)
+			inputState.move = true;
 
 		return inputState;
 	}
@@ -50,5 +55,15 @@ namespace jh {
 		}
 
 		return isShiftHeld;
+	}
+	bool Input::GetSpaceBarPressed(olc::PixelGameEngine* pge)
+	{
+		bool isSpaceBarPressed = false;
+
+		if (pge->GetKey(olc::Key::SPACE).bPressed) {
+			isSpaceBarPressed = true;
+		}
+
+		return isSpaceBarPressed;
 	}
 }

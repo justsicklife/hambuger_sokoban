@@ -10,7 +10,8 @@ namespace jh {
 		// true 방향 조절 모드
 		// false 일반 이동 모드
 		bool directionMode = false;
-
+		
+		bool move = false;
 		bool eat = false;
 		bool spit = false;
 		bool undo = false;
@@ -20,6 +21,11 @@ namespace jh {
 	class Input
 	{
 	public:
+		/// <summary>
+		/// 입력을 받아서 InputState 를 반환함
+		/// </summary>
+		/// <param name="pge"></param>
+		/// <returns></returns>
 		InputState Update(olc::PixelGameEngine* pge);
 	private:
 
@@ -27,5 +33,7 @@ namespace jh {
 		Direction GetMoveDirection(olc::PixelGameEngine* pge);
 
 		bool GetShiftHeld(olc::PixelGameEngine* pge);
+
+		bool GetSpaceBarPressed(olc::PixelGameEngine* pge);
 	};
 }

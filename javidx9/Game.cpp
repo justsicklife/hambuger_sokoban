@@ -32,31 +32,45 @@ namespace jh {
 	}
 	void Game::Update()
 	{
-
-		// Input 에 GetMoveDirectino 을 박으면 생기는 일
-		// 1. 일단 매게변수로 pge 를 받음 이건 OK
-		// 2. bPusing , dirPush 이걸 어떻게 하는 게 문제다
-		// 3. 문제가 되는 이유 Input 하고 Game 에 중복된 두개의 변수가있음
-		// 4. 이걸 어떻게 Input -> Game 까지 연결할까 이게 문제다
-		// 5. 포인터 매게변수로 넣는건 좀 더럽고 
-		// 6. 아니면 구조체로 묶어서 반환하는 것도 좀 그렇고
 		inputState = input->Update(pge);
-		
 	}
+
 	void Game::LateUpdate()
 	{
-		olc::vi2d playerPos = map->LateUpdate(inputState);
-
+		// 멤버 플레이어 정보 가져옴
 		PlayerInfo playerInfo = this->player->playerInfo;
 
-		if (inputState.direction != Direction::NONE) {
-			playerInfo.facing = inputState.direction;
+		player->playerInfo.pos = map->vPlayer;
+
+
+		// 먹는 키를 누르면 
+
+		if (inputState.eat) {
+			player->Eat(map, inputState);
+		}
+		// 쉬프트 누르면 방향 만 변화함
+		else if (inputState.directionMode) {
+			if (inputState.direction != Direction::NONE) {
+				playerInfo.facing = inputState.direction;
+			}
+			this->player->playerInfo = playerInfo;
 		}
 
-		playerInfo.pos = playerPos;
+		else if(inputState.move) {
+			// Push 메서드
+			olc::vi2d playerPos = map->LateUpdate(inputState);
 
-		player->LateUpdate(playerInfo);
+			// 방향이 존재한다면
+			if (inputState.direction != Direction::NONE) {
+				// 방향을 초기화 해줌
+				playerInfo.facing = inputState.direction;
+			}
+ 
+			playerInfo.pos = playerPos;
+			this->player->playerInfo = playerInfo;
+		}
 	}
+
 	void Game::Render()
 	{
 		renderer->RenderMap(pge,map);

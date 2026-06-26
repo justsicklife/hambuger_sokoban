@@ -30,11 +30,14 @@ namespace jh {
 	void Renderer::RenderPlayer(olc::PixelGameEngine* pge, Player* player,Map* map)
 	{
 
-		auto& b = map->vLevel[map->id(player->playerInfo.pos)];
-
 		olc::vi2d pos = player->playerInfo.pos;
 
 		olc::vi2d size = map->vBlockSize;
+
+		// 플레이어 좌표에 있는 것을 가져옴
+		auto& b = map->vLevel[map->id(pos)];
+
+		int a = 10;
 
 		if (b != nullptr) {
 			pge->FillRect(pos * size, size, olc::WHITE);

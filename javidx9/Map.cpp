@@ -24,8 +24,14 @@ namespace jh {
 					vPlayer = { x,y };
 					break;
 
-				case '+':
-					vLevel.emplace_back(std::make_unique<block_simple>());
+				case 'T':
+					vLevel.emplace_back(std::make_unique<block_tomato>());
+					break;
+				case 'C':
+					vLevel.emplace_back(std::make_unique<block_cheese>());
+					break;
+				case 'B':
+					vLevel.emplace_back(std::make_unique<block_bun>());
 					break;
 				default:
 					vLevel.emplace_back(nullptr);
