@@ -27,7 +27,7 @@ namespace jh {
 	{
 		renderer->Initialize();
 
-		map->Initialize();
+		map->Initialize(player);
 
 	}
 	void Game::Update()
@@ -40,13 +40,13 @@ namespace jh {
 		// 멤버 플레이어 정보 가져옴
 		PlayerInfo playerInfo = this->player->playerInfo;
 
-		player->playerInfo.pos = map->vPlayer;
+		//player->playerInfo.pos = map->vPlayer;
 
 
 		// 먹는 키를 누르면 
 
 		if (inputState.eat) {
-			player->Eat(map, inputState);
+			player->Eat(map, player,inputState);
 		}
 		// 쉬프트 누르면 방향 만 변화함
 		else if (inputState.directionMode) {
@@ -58,7 +58,7 @@ namespace jh {
 
 		else if(inputState.move) {
 			// Push 메서드
-			olc::vi2d playerPos = map->LateUpdate(inputState);
+			olc::vi2d playerPos = map->LateUpdate(inputState,player);
 
 			// 방향이 존재한다면
 			if (inputState.direction != Direction::NONE) {

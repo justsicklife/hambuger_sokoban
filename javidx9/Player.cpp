@@ -7,7 +7,7 @@ namespace jh {
 		this->playerInfo = playerInfo;
 	}
 
-	void Player::Eat(Map* map, InputState inputState)
+	void Player::Eat(Map* map, Player* player, InputState inputState)
 	{
 		olc::vi2d vPrevPlayer = this->playerInfo.pos;
 		olc::vi2d vCurPlayer = vPrevPlayer;
@@ -33,7 +33,7 @@ namespace jh {
 		// 먹은 후에 위치 
 		map->vLevel[map->id(vCurPlayer)] = std::make_unique<block_player>();
 
-		map->vPlayer = vCurPlayer;
+		player->playerInfo.pos = vCurPlayer;
 
    		this->playerInfo.pos = vCurPlayer;
 	}

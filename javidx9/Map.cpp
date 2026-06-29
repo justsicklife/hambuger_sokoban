@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "Player.h"
 
 namespace jh {
 	Map::Map()
@@ -7,7 +8,7 @@ namespace jh {
 	Map::~Map()
 	{
 	}
-	void Map::Initialize()
+	void Map::Initialize(Player* player)
 	{
 		vLevel.clear();
 
@@ -21,7 +22,7 @@ namespace jh {
 					break;
 				case 'P':
 					vLevel.emplace_back(std::make_unique<block_player>());
-					vPlayer = { x,y };
+					player->playerInfo.pos = { x,y };
 					break;
 
 				case 'T':
@@ -41,11 +42,11 @@ namespace jh {
 		}
 	}
 	
-	olc::vi2d Map::LateUpdate(InputState inputState)
+	olc::vi2d Map::LateUpdate(InputState inputState,Player* player)
 	{
 		if (inputState.direction != Direction::NONE) {
 			// 현재 플레이어 위치
-			olc::vi2d vBlock = vPlayer;
+			olc::vi2d vBlock = player->playerInfo.pos;
 
 			// 미는걸 허락하는지
 			bool bAllowPush = false;
@@ -88,7 +89,7 @@ namespace jh {
 			// 미는 걸 허락한다면
 			if (bAllowPush) {
 				// 민 블록의 위치와 : 플레이어의 위치가 다르다면
-				while (vBlock != vPlayer)
+				while (vBlock != player->playerInfo.pos)
 				{
 					olc::vi2d vSource = vBlock;
 
@@ -116,22 +117,22 @@ namespace jh {
 
 				switch (inputState.direction) {
 				case Direction::NORTH:
-					vPlayer.y--;
+					player->playerInfo.pos.y--;
 					break;
 				case Direction::SOUTH:
-					vPlayer.y++;
+					player->playerInfo.pos.y++;
 					break;
 				case Direction::EAST:
-					vPlayer.x++;
+					player->playerInfo.pos.x++;
 					break;
 				case Direction::WEST:
-					vPlayer.x--;
+					player->playerInfo.pos.x--;
 					break;
 				}
 			}
 
 		}
-		return vPlayer;
+		return player->playerInfo.pos;
 	}
 
 }

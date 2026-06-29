@@ -40,7 +40,7 @@ namespace jh {
 		/// </summary>
 		/// <param name="map"></param>
 		/// <param name="inputState"></param>
-		void Eat(Map* map, InputState inputState);
+		void Eat(Map* map, Player* player,InputState inputState);
 	private:
 		
 	};
